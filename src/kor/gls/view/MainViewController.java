@@ -1,5 +1,11 @@
 package kor.gls.view;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +18,7 @@ import javafx.scene.layout.Pane;
 import kor.gls.Main;
 import kor.gls.model.TodayCharge;
 import kor.gls.model.TodayDevice;
+import kor.gls.util.CommonUtil;
 
 public class MainViewController {
 	
@@ -183,7 +190,30 @@ public class MainViewController {
 	
 	@FXML
 	private void initialize() {
+		CommonUtil common = new CommonUtil();
 		
+		System.out.println(common.PROJECT_PATH);
+		
+		// 1. 파일 생성 이후 포스-수집장치  일련번호 확인 
+		try {
+			File file_auth = new File(common.PROJECT_PATH + "/sample/auth.data");
+			FileReader reader = new FileReader(file_auth);
+			int file_cnt;
+			String encode_str = ""; 
+			
+			while((file_cnt = reader.read()) != -1) {
+				encode_str += (char) file_cnt;
+			}
+			
+			// 디코딩 변환
+			byte[] decoded = Base64.getDecoder().decode(encode_str);
+			String str_auth_data = new String(decoded, StandardCharsets.UTF_8);
+			System.out.println("일련번호추출 : " + str_auth_data);
+			
+			reader.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 금일 세차기기 버튼 핸들링
@@ -201,6 +231,10 @@ public class MainViewController {
 		
 	}
 	
+	// 현재 시간 체크 
+	public void handlecurrentTimeClock() {
+		
+	}
 	
 	public void setMainApp(Main mainApp) {
 		this.mainApp = mainApp;
