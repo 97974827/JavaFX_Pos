@@ -20,14 +20,14 @@ public class TodayCharge {
 		this(null, null, null, null, null, null, null, null, null);
 	}
 	
-	public TodayCharge(String no, String end_time, String device_addr, String device_name, String current_money, String charge, String bonus, String remain_card, String card_num) {
+	public TodayCharge(String no, String end_time, String device_addr, String device_name, String current_money, String bonus, String charge, String remain_card, String card_num) {
 		this.no = new SimpleStringProperty(no);
 		this.end_time = new SimpleStringProperty(end_time);
 		this.device_addr = new SimpleStringProperty(device_addr);
 		this.device_name = new SimpleStringProperty(device_name);
 		this.current_money = new SimpleStringProperty(current_money);
-		this.charge = new SimpleStringProperty(charge);
 		this.bonus = new SimpleStringProperty(bonus);
+		this.charge = new SimpleStringProperty(charge);
 		this.remain_card = new SimpleStringProperty(remain_card);
 		this.card_num = new SimpleStringProperty(card_num);
 	}

@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kor.gls.view.MainViewController">
    <children>
-      <ImageView fitHeight="32.0" fitWidth="1847.0" layoutX="29.0" layoutY="988.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btn_show_info_image" fitHeight="32.0" fitWidth="1847.0" layoutX="29.0" layoutY="988.0" onMouseClicked="#handleShowInfo" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="File:resources/show_btn.png" />
          </image>
@@ -86,7 +86,7 @@
             <Image url="File:resources/setting_active.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="1850.0" layoutX="30.0" layoutY="650.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btn_hide_info_image" fitHeight="20.0" fitWidth="1850.0" layoutX="30.0" layoutY="650.0" onMouseClicked="#hanldeHideInfo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="File:resources/bottom1.png" />
          </image>
@@ -181,7 +181,7 @@
                         <Font name="HCR Dotum Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btn_" layoutX="230.0" mnemonicParsing="false" text="충전기기 사용내역">
+                  <Button fx:id="btn_charge_wash_info" layoutX="230.0" mnemonicParsing="false" onMouseClicked="#hanldeBtnCharge" text="충전기기 사용내역">
                      <font>
                         <Font name="HCR Dotum" size="16.0" />
                      </font>
@@ -200,7 +200,7 @@
                               <TableColumn fx:id="column_charge_device_name" prefWidth="200.0" text="장비명" />
                               <TableColumn fx:id="column_charge_current_money" prefWidth="200.0" text="투입금액" />
                               <TableColumn fx:id="column_charge_bonus" prefWidth="200.0" text="서비스" />
-                              <TableColumn fx:id="column_charge_current_charge" prefWidth="75.0" text="충전액" visible="false" />
+                              <TableColumn fx:id="column_charge_current_charge" prefWidth="200.0" text="충전액" />
                               <TableColumn fx:id="column_charge_remain_card" prefWidth="200.0" text="카드잔액" />
                               <TableColumn fx:id="column_charge_card_num" prefWidth="200.0" text="카드번호" />
                            </columns>
@@ -212,7 +212,7 @@
                         <Font name="HCR Dotum Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button layoutX="230.0" mnemonicParsing="false" text="세차기기 사용내역">
+                  <Button fx:id="btn_device_wash_info" layoutX="230.0" mnemonicParsing="false" onMouseClicked="#handleBtnDevice" text="세차기기 사용내역">
                      <font>
                         <Font name="HCR Dotum" size="16.0" />
                      </font>
