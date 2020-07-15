@@ -353,9 +353,7 @@ public class MainViewController {
 				return;
 			}
 		}
-		
-		
-		
+	
 	}
 	
 	// 금일 세차기기 버튼 핸들링
