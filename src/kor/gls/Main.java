@@ -16,7 +16,7 @@ import kor.gls.view.MainViewController;
 public class Main extends Application {
 	
 	private Stage primaryStage;
-	private BorderPane rootLayout;
+	public static BorderPane rootLayout;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -60,7 +60,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-			
+	
+	public BorderPane getRootLayout() {
+		return rootLayout;
+	}
+	
 	// 메인 스테이지 반환 
 	public Stage getPrimaryStage() {
 		return primaryStage;

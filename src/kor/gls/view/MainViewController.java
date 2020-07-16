@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -19,6 +21,8 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -26,7 +30,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import kor.gls.Main;
@@ -34,6 +41,7 @@ import kor.gls.model.TodayCharge;
 import kor.gls.model.TodayDevice;
 import kor.gls.util.CommonUtil;
 import kor.gls.util.HttpUtil;
+import kor.gls.util.WeatherUtil;
 
 public class MainViewController {
 	
@@ -51,6 +59,9 @@ public class MainViewController {
 	
 	@FXML
 	private Label lbl_weather_temp; // 금일 온도
+	
+	@FXML
+	private ImageView image_top_weather; // 상단 날씨 이미지 
 	
 	@FXML
 	private Label lbl_current_clock; // 현재시간
@@ -321,6 +332,9 @@ public class MainViewController {
 		request = url + req; 
 		data_connect = http.post(request);
 		
+		// 지역날씨 zone
+		String weather_url_zone = "";
+		
 		if (data_connect.equals("error")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("경고");
@@ -337,6 +351,7 @@ public class MainViewController {
 				String str_self_count = object_pos_config.get("self_count").toString();
 				String str_air_count = object_pos_config.get("air_count").toString();
 				String str_mate_count = object_pos_config.get("mate_count").toString();
+				weather_url_zone = object_pos_config.get("weather_url").toString();
 				
 				// UI component change
 				lbl_top_self.setText(str_self_count);
@@ -353,7 +368,31 @@ public class MainViewController {
 				return;
 			}
 		}
-	
+		
+		// 날씨 정보 가져오기
+		WeatherUtil weatherClass = new WeatherUtil();
+		
+		List<Map<String, String>> weather_data = new ArrayList<Map<String, String>>(); 
+		weather_data = weatherClass.getWeatherRssZoneParse(weather_url_zone);
+		
+		for(int i=0; i<weather_data.size(); i++) {
+			String weather_day = weather_data.get(i).get("day"); 
+			
+			String temper = weather_data.get(i).get("temp"); // 온도
+			String wfKor = weather_data.get(i).get("wfKor"); // 날씨
+		
+			lbl_weather_str.setText(wfKor);
+			lbl_weather_temp.setText(temper + "ºC");
+			
+			String str_image = weatherClass.changeWeatherImage(wfKor);
+			Image image = new Image("File:resources/" + str_image);
+			image_top_weather.setImage(image);
+		}
+		
+		req = "start_thread";
+		request = url + req;
+		data_connect = http.post(request);
+		
 	}
 	
 	// 금일 세차기기 버튼 핸들링
@@ -538,35 +577,6 @@ public class MainViewController {
 		}
 	}
 	
-	// 현재 시간 체크 
-	public void handlecurrentTimeStart() {
-		CLOCK_STATE = true;
-		Thread thread_clock = new Thread() {
-			@Override
-			public void run() {
-				while(CLOCK_STATE) {
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-					String dTime = formatter.format(new Date()); // 시간 추출 
-					
-					// 주의할 점 : javaFX 어플리케이션 스레드는 시간을 요하는 작업을 하지 않도록 하는 것
-					// 다른 작업 스레드를 생성해서 처리함 
-					// 작업 스레드가 직접 UI컴포넌트를 변경 할 수 없기 때문에 변경이 필요한 경우 , 
-					// 작업 스레드는 UI컴포넌트 변경 코드를 Runnable로 생성 가능 (run 오버라이딩)
-					Platform.runLater(() -> {
-						lbl_current_clock.setText(dTime);
-					});
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {}
-					
-				}
-			}
-		};
-		
-		thread_clock.setDaemon(true);
-		thread_clock.start();
-	}
-	
 	// 세사기기 사용내역 클릭
 	public void handleBtnDevice() {
 		today_charge_data.clear();
@@ -616,9 +626,64 @@ public class MainViewController {
 		pane_tail_info.setVisible(false);
 	}
 	
+	// 현재 시간 체크 
+	public void handlecurrentTimeStart() {
+		CLOCK_STATE = true;
+		Thread thread_clock = new Thread() {
+			@Override
+			public void run() {
+				while(CLOCK_STATE) {
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+					String dTime = formatter.format(new Date()); // 시간 추출 
+					
+					// 주의할 점 : javaFX 어플리케이션 스레드는 시간을 요하는 작업을 하지 않도록 하는 것
+					// 다른 작업 스레드를 생성해서 처리함 
+					// 작업 스레드가 직접 UI컴포넌트를 변경 할 수 없기 때문에 변경이 필요한 경우 , 
+					// 작업 스레드는 UI컴포넌트 변경 코드를 Runnable로 생성 가능 (run 오버라이딩)
+					Platform.runLater(() -> {
+						lbl_current_clock.setText(dTime);
+					});
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {}
+					
+				}
+			}
+		};
+		
+		thread_clock.setDaemon(true);
+		thread_clock.start();
+	}
+		
 	// 시계 멈추기 
 	public void handlecurrentTimeStop() {
 		CLOCK_STATE = false;
+	}
+	
+	// 환경설정에 마우스 누를 때 
+	public void handleBtnSettingPressed() {
+		Image image = new Image("File:resources/setting_btn_active.png");
+		btn_setting_image.setImage(image);
+	}
+	
+	// 환경설정에 마우스 뗄 때
+	public void handleBtnSettingReleased(){
+		Image image = new Image("File:resources/setting_btn_disable.png");
+		btn_setting_image.setImage(image);
+		
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/Login.fxml"));
+			AnchorPane pane_login = (AnchorPane) loader.load();
+			
+			Main.rootLayout.setCenter(pane_login);
+			
+			LoginController login_controller = loader.getController();
+			login_controller.setMainApp(mainApp);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// 금일 세차 / 충전 데이터 리스트 반환

@@ -11,16 +11,14 @@ public class CommonUtil {
 
 	public static String PROJECT_PATH = System.getProperty("user.dir"); // 프로젝트 경로 
 	
-	public CommonUtil() {
-		//System.out.println("프로젝트 경로 : " + PROJECT_PATH);
-	}
-	
+		
 	// URL 요청 
 	public String getUrl() {
 		String url = "http://192.168.0.200:5000/";
 		
 		if(DEBUG) {
 			url = "http://glstest.iptime.org:50000/";
+//			url = "http://glsd3.iptime.org:50000/";
 		}
 	
 		return url;
@@ -38,6 +36,8 @@ public class CommonUtil {
 		return str_date;
 	}
 	
+	
+	// TestCode
 	public static void main(String[] args) {
 		CommonUtil c = new CommonUtil();
 		c.TimestampToDateString("1594788967");

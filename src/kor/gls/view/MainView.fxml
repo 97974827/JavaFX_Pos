@@ -71,7 +71,7 @@
             <Font name="HCR Dotum" size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="1484.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image_top_weather" fitHeight="50.0" fitWidth="40.0" layoutX="1484.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="File:resources/cloud.png" />
          </image>
@@ -93,7 +93,7 @@
       </ImageView>
       <Pane fx:id="pane_main" layoutY="162.0" prefHeight="450.0" prefWidth="1741.0">
          <children>
-            <ImageView fx:id="btn_setting_image" fitHeight="220.0" fitWidth="210.0" layoutX="150.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_setting_image" fitHeight="220.0" fitWidth="210.0" layoutX="150.0" layoutY="10.0" onMousePressed="#handleBtnSettingPressed" onMouseReleased="#handleBtnSettingReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/setting_btn_disable.PNG" />
                </image>
