@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -20,6 +21,9 @@
          <image>
             <Image url="File:resources/show_btn.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fitHeight="88.0" fitWidth="1836.0" layoutX="42.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="41.0">
          <image>
@@ -80,6 +84,9 @@
          <image>
             <Image url="File:resources/real_time_disable.PNG" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="btn_small_setting_image" fitHeight="39.0" fitWidth="38.0" layoutX="42.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -90,6 +97,9 @@
          <image>
             <Image url="File:resources/bottom1.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Pane fx:id="pane_main" layoutY="162.0" prefHeight="450.0" prefWidth="1741.0">
          <children>
@@ -97,61 +107,97 @@
                <image>
                   <Image url="File:resources/setting_btn_disable.PNG" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_weather_image" fitHeight="220.0" fitWidth="210.0" layoutX="415.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_weather_image" fitHeight="220.0" fitWidth="210.0" layoutX="415.0" layoutY="10.0" onMousePressed="#handleBtnWeatherPressed" onMouseReleased="#handleBtnWeatherReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/wather_btn_disable.PNG" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_usbcharge_image" fitHeight="220.0" fitWidth="210.0" layoutX="680.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_usbcharge_image" fitHeight="220.0" fitWidth="210.0" layoutX="680.0" layoutY="10.0" onMousePressed="#handleBtnUsbChargePressed" onMouseReleased="#handleBtnUsbChargeReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/charger_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_seller_image" fitHeight="220.0" fitWidth="210.0" layoutX="945.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_seller_image" fitHeight="220.0" fitWidth="210.0" layoutX="945.0" layoutY="10.0" onMousePressed="#handleBtnSellerPressed" onMouseReleased="#handleBtnSellerReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/seller_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_device_config_image" fitHeight="220.0" fitWidth="210.0" layoutX="1210.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_device_config_image" fitHeight="220.0" fitWidth="210.0" layoutX="1210.0" layoutY="10.0" onMousePressed="#handleBtnDeviceConfigPressed" onMouseReleased="#handleBtnDeviceConfigReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/device_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_member_image" fitHeight="220.0" fitWidth="210.0" layoutX="1475.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_member_image" fitHeight="220.0" fitWidth="210.0" layoutX="1475.0" layoutY="10.0" onMousePressed="#handleBtnMemberPressed" onMouseReleased="#handleBtnMemberReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/member_btn_disable_1.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_blackcard_image" fitHeight="220.0" fitWidth="210.0" layoutX="150.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_blackcard_image" fitHeight="220.0" fitWidth="210.0" layoutX="150.0" layoutY="250.0" onMousePressed="#handleBtnBlackCardPressed" onMouseReleased="#handleBtnBlackCardReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/blacklist_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_device_info_image" fitHeight="220.0" fitWidth="210.0" layoutX="415.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_device_info_image" fitHeight="220.0" fitWidth="210.0" layoutX="415.0" layoutY="250.0" onMousePressed="#handleBtnDeviceInfoPressed" onMouseReleased="#handleBtnDeviceInfoReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/deviceinfo_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_addon_image" fitHeight="220.0" fitWidth="210.0" layoutX="680.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_addon_image" fitHeight="220.0" fitWidth="210.0" layoutX="680.0" layoutY="250.0" onMousePressed="#handleBtnAddOnPressed" onMouseReleased="#handleBtnAddOnReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/addon_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_member_list_image" fitHeight="220.0" fitWidth="210.0" layoutX="945.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_member_list_image" fitHeight="220.0" fitWidth="210.0" layoutX="945.0" layoutY="250.0" onMousePressed="#handleBtnMemberListPressed" onMouseReleased="#handleBtnMemberListReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/memberlist_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_card_list_image" fitHeight="220.0" fitWidth="210.0" layoutX="1210.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_card_list_image" fitHeight="220.0" fitWidth="210.0" layoutX="1210.0" layoutY="250.0" onMousePressed="#handleBtnCardListPressed" onMouseReleased="#handleBtnCardListReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/card_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="btn_realtime_image" fitHeight="220.0" fitWidth="210.0" layoutX="1475.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btn_realtime_image" fitHeight="220.0" fitWidth="210.0" layoutX="1475.0" layoutY="250.0" onMousePressed="#handleBtnRealTimePressed" onMouseReleased="#handleBtnRealTimeReleased" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="File:resources/monitor_btn_disable.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </Pane>
@@ -185,6 +231,9 @@
                      <font>
                         <Font name="HCR Dotum" size="16.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </Pane>
@@ -216,6 +265,9 @@
                      <font>
                         <Font name="HCR Dotum" size="16.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </Pane>

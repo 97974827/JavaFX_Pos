@@ -84,6 +84,7 @@ public class LoginController {
 		
 		String db_id = "";
 		String db_pw = "";
+		String master_pw = "";
 		
 		String req = "";
 		String request = "";
@@ -108,7 +109,7 @@ public class LoginController {
 				
 				db_id = object_pos.get("shop_id").toString();
 				db_pw = object_pos.get("shop_pw").toString();
-				
+				master_pw = object_pos.get("admin_pw").toString();
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -120,7 +121,7 @@ public class LoginController {
 				return;
 			}
 			
-			// 환경설정 로그인 성공
+			// 관리자 로그인 성공
 			if(id.equals(db_id) && pw.equals(db_pw)) {
 				try {
 					FXMLLoader loader = new FXMLLoader();
@@ -130,6 +131,26 @@ public class LoginController {
 					
 					SettingController setting = loader.getController();
 					setting.setMainApp(mainApp);
+					
+				} catch(Exception e) {
+					e.printStackTrace();
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("경고");
+					alert.setHeaderText("에러");
+					alert.setContentText("값이 제대로 전달되지 않았습니다. 다시 시도해 주세요.");
+					alert.showAndWait();
+					return;
+				}
+			// 마스터 로그인 성공 
+			} else if(id.equals(db_id) && pw.equals(master_pw)) {
+				try {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(Main.class.getResource("view/MasterSettingView.fxml"));
+					AnchorPane master = (AnchorPane) loader.load();
+					Main.rootLayout.setCenter(master);
+					
+					MasterSettingController mastersetting = loader.getController();
+					mastersetting .setMainApp(mainApp);
 					
 				} catch(Exception e) {
 					e.printStackTrace();
@@ -164,6 +185,14 @@ public class LoginController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setLoginKinds(String str_login_kinds) {
+		this.str_login_kinds = str_login_kinds;
+	}
+	
+	public String getLoginKinds() {
+		return str_login_kinds;
 	}
 	
 	public void setMainApp(Main mainApp) {

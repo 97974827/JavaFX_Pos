@@ -660,14 +660,16 @@ public class MainViewController {
 		CLOCK_STATE = false;
 	}
 	
-	// 환경설정에 마우스 누를 때 
-	public void handleBtnSettingPressed() {
+	// 환경설정에 마우스 누를 때
+	@FXML
+	private void handleBtnSettingPressed() {
 		Image image = new Image("File:resources/setting_btn_active.png");
 		btn_setting_image.setImage(image);
 	}
 	
 	// 환경설정에 마우스 뗄 때
-	public void handleBtnSettingReleased(){
+	@FXML
+	private void handleBtnSettingReleased(){
 		Image image = new Image("File:resources/setting_btn_disable.png");
 		btn_setting_image.setImage(image);
 		
@@ -684,6 +686,166 @@ public class MainViewController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 일기예보에 마우스 누를 때 
+	@FXML
+	private void handleBtnWeatherPressed() {
+		Image image = new Image("File:resources/wather_btn_active.png");
+		btn_weather_image.setImage(image);
+	}
+	
+	// 일기예보에 마우스 뗄 때
+	@FXML
+	private void handleBtnWeatherReleased(){
+		Image image = new Image("File:resources/wather_btn_disable.png");
+		btn_weather_image.setImage(image);
+		
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/WeatherView.fxml"));
+			AnchorPane weather = (AnchorPane) loader.load();
+			
+			Main.rootLayout.setCenter(weather);
+			
+			WeatherController controller = loader.getController();
+			controller.setMainApp(mainApp);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	@FXML
+	private void handleBtnUsbChargePressed() {
+		Image image = new Image("File:resources/charger_btn_active.png");
+		btn_usbcharge_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnUsbChargeReleased(){
+		Image image = new Image("File:resources/charger_btn_disable.png");
+		btn_usbcharge_image.setImage(image);
+		
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/USBChargeView.fxml"));
+			AnchorPane pane_charge = (AnchorPane) loader.load();
+			
+			Main.rootLayout.setCenter(pane_charge);
+			
+			USBChargeController controller = loader.getController();
+			controller.setMainApp(mainApp);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void handleBtnSellerPressed() {
+		Image image = new Image("File:resources/seller_btn_active.png");
+		btn_seller_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnSellerReleased() {
+		Image image = new Image("File:resources/seller_btn_disable.png");
+		btn_seller_image.setImage(image);		
+	}
+	 
+	@FXML
+	private void handleBtnDeviceConfigPressed() {
+		Image image = new Image("File:resources/device_btn_active.png");
+		btn_device_config_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnDeviceConfigReleased() {
+		Image image = new Image("File:resources/device_btn_disable.png");
+		btn_device_config_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnMemberPressed() {
+		Image image = new Image("File:resources/member_btn_active_1.png");
+		btn_member_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnMemberReleased() {
+		Image image = new Image("File:resources/member_btn_disable_1.png");
+		btn_member_image.setImage(image);		
+	}
+	@FXML
+	private void handleBtnBlackCardPressed() {
+		Image image = new Image("File:resources/blacklist_btn_active.png");
+		btn_blackcard_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnBlackCardReleased() {
+		Image image = new Image("File:resources/blacklist_btn_disable.png");
+		btn_blackcard_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnDeviceInfoPressed() {
+		Image image = new Image("File:resources/deviceinfo_btn_active.png");
+		btn_device_info_image.setImage(image);
+	}
+	@FXML
+	private void handleBtnDeviceInfoReleased() {
+		Image image = new Image("File:resources/deviceinfo_btn_disable.png");
+		btn_device_info_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnAddOnPressed() {
+		Image image = new Image("File:resources/addon_btn_active.png");
+		btn_addon_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnAddOnReleased() {
+		Image image = new Image("File:resources/addon_btn_disable.png");
+		btn_addon_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnMemberListPressed() {
+		Image image = new Image("File:resources/memberlist_btn_active.png");
+		btn_member_list_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnMemberListReleased() {
+		Image image = new Image("File:resources/memberlist_btn_disable.png");
+		btn_member_list_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnCardListPressed() {
+		Image image = new Image("File:resources/card_btn_active.png");
+		btn_card_list_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnCardListReleased() {
+		Image image = new Image("File:resources/card_btn_disable.png");
+		btn_card_list_image.setImage(image);		
+	}
+	
+	@FXML
+	private void handleBtnRealTimePressed() {
+		Image image = new Image("File:resources/monitor_btn_active.png");
+		btn_realtime_image.setImage(image);
+	}
+	
+	@FXML
+	private void handleBtnRealTimeReleased() {
+		Image image = new Image("File:resources/monitor_btn_disable.png");
+		btn_realtime_image.setImage(image);		
 	}
 	
 	// 금일 세차 / 충전 데이터 리스트 반환
