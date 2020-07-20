@@ -650,7 +650,7 @@ public class MainViewController {
 				}
 			}
 		};
-		
+
 		thread_clock.setDaemon(true);
 		thread_clock.start();
 	}

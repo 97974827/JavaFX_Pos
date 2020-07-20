@@ -43,11 +43,11 @@
                         <Font name="HCR Dotum Bold" size="29.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ChoiceBox fx:id="choicebox_manager_list" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <TextField maxWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <TextField fx:id="textfield_auth_data" maxWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <font>
                         <Font name="HCR Dotum" size="21.0" />
                      </font>
@@ -82,12 +82,12 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label text="-" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <Label fx:id="lbl_datacollect_connect" text="-" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <font>
                         <Font name="HCR Dotum Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="102.0" text="체크" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                  <Button fx:id="btn_datacollect_connect" mnemonicParsing="false" onMouseClicked="#handleCheckDC" prefHeight="44.0" prefWidth="102.0" text="체크" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>
@@ -95,11 +95,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <ChoiceBox fx:id="choicebox_card_enable_state" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <ChoiceBox fx:id="choicebox_card_address" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
@@ -172,23 +172,23 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ChoiceBox fx:id="choicebox_device_addr" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <ChoiceBox fx:id="choicebox_operater_condition" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <ChoiceBox fx:id="choicebox_money_condition" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <ChoiceBox fx:id="choicebox_coating_print" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <ChoiceBox prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <ChoiceBox fx:id="choicebox_wipping_enable" prefHeight="38.0" prefWidth="150.0" styleClass="test" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
@@ -208,7 +208,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField maxWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                  <TextField fx:id="textfield_wipping_temp" maxWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <font>
                         <Font name="HCR Dotum" size="21.0" />
                      </font>

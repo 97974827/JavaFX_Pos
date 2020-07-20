@@ -107,7 +107,7 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="self_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <ChoiceBox fx:id="choice_self_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -115,7 +115,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox fx:id="air_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ChoiceBox fx:id="choice_air_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -123,7 +123,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox fx:id="mate_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <ChoiceBox fx:id="choice_mate_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -131,7 +131,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox fx:id="charge_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <ChoiceBox fx:id="choice_charger_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -139,7 +139,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox fx:id="coin_count" minWidth="75.0" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <ChoiceBox fx:id="choice_coin_count" minWidth="75.0" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -147,7 +147,7 @@
                         <Cursor fx:constant="MOVE" />
                      </cursor>
                   </ChoiceBox>
-                  <ChoiceBox fx:id="bill_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                  <ChoiceBox fx:id="choice_bill_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -160,7 +160,7 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="kiosk_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                  <ChoiceBox fx:id="choice_kiosk_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
@@ -169,7 +169,7 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="touch_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <ChoiceBox fx:id="choice_touch_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
@@ -178,13 +178,13 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="garage_count" prefHeight="38.0" prefWidth="80.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                  <ChoiceBox fx:id="choice_garage_count" prefHeight="38.0" prefWidth="80.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                   <Label text="리더기 수량" textFill="#666666" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <font>
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="reader_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                  <ChoiceBox fx:id="choice_reader_count" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
@@ -246,14 +246,14 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefHeight="5.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <TextField fx:id="textfield_admin_id" maxHeight="34.0" maxWidth="159.0" prefHeight="5.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <TextField fx:id="textfield_admin_pw" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <TextField fx:id="textfield_shop_id" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <TextField fx:id="textfield_shop_name" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <TextField fx:id="textfield_shop_tel" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <TextField fx:id="textfield_shop_ceo" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <TextField fx:id="textfield_shop_addr" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <TextField fx:id="textfield_shop_business_num" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <GridPane layoutX="800.0" layoutY="60.0" prefHeight="591.0" prefWidth="303.0" style="-fx-border-color: grey; -fx-border-radius: 15;">
@@ -307,12 +307,12 @@
                         <Font name="HCR Dotum Bold" size="16.0" />
                      </font>
                   </Label>
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <CheckBox fx:id="checkbox_seller_pw_enable_state" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="체크 시 메인 표시" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <CheckBox fx:id="checkbox_seller_main_state" mnemonicParsing="false" text="체크 시 메인 표시" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="HCR Dotum Bold" size="14.0" />
                      </font>
@@ -320,8 +320,8 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </CheckBox>
-                  <TextField maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <CheckBox mnemonicParsing="false" text="체크 시 사용" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <TextField fx:id="textfield_weather_url_zone" maxHeight="34.0" maxWidth="159.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="checkbox_member_bonus" mnemonicParsing="false" text="체크 시 사용" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <font>
                         <Font name="HCR Dotum Bold" size="14.0" />
                      </font>
@@ -329,24 +329,30 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </CheckBox>
-                  <Label text="None" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                  <Label fx:id="lbl_pos_version" text="None" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="None" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                  <Label fx:id="lbl_dc_version" text="None" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="mate_count1" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <ChoiceBox fx:id="choicebox_weather_area" prefHeight="38.0" prefWidth="80.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
+                  <TextField fx:id="textfield_master_card_num" maxHeight="34.0" maxWidth="159.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="80.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label fx:id="lbl_manager_no" textFill="#666666" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="HCR Dotum Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
-            <Button layoutX="35.0" layoutY="790.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="44.0" prefWidth="102.0" styleClass="default_btn" text="뒤로가기" textFill="#666666">
+            <Button fx:id="btn_setting_back" layoutX="35.0" layoutY="790.0" mnemonicParsing="false" onMouseClicked="#handleExit" prefHeight="44.0" prefWidth="102.0" styleClass="default_btn" text="뒤로가기" textFill="#666666">
                <font>
                   <Font name="HCR Dotum Bold" size="16.0" />
                </font>
@@ -354,7 +360,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="1000.0" layoutY="790.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="102.0" styleClass="default_btn" text="저장 후 종료" textFill="#666666">
+            <Button fx:id="btn_setting_save_and_exit" layoutX="1000.0" layoutY="790.0" mnemonicParsing="false" onMouseClicked="#handleOK" prefHeight="44.0" prefWidth="102.0" styleClass="default_btn" text="저장 후 종료" textFill="#666666">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -412,7 +418,7 @@
             <Font name="HCR Dotum" size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="1484.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image_top_weather" fitHeight="50.0" fitWidth="40.0" layoutX="1484.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="File:resources/cloud.png" />
          </image>

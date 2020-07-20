@@ -35,6 +35,7 @@ public class Main extends Application {
 			rootLayout = (BorderPane) loader.load();
 			
 			Scene scene = new Scene(rootLayout);
+			scene.getStylesheets().add(getClass().getResource("application.css").toString()); // CSS Àû¿ë
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
