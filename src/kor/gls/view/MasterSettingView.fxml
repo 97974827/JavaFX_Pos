@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kor.gls.view.MasterSettingController">
+<AnchorPane styleClass="main_background" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kor.gls.view.MasterSettingController">
    <children>
       <Pane prefHeight="1080.0" prefWidth="1920.0">
          <children>
@@ -111,7 +111,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="150.0" text="저장 후 종료" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                  <Button mnemonicParsing="false" onMouseClicked="#handleOK" prefHeight="44.0" prefWidth="150.0" text="저장 후 종료" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>
@@ -192,7 +192,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></ChoiceBox>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="180.0" text="설정불러오기" textFill="#666666" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                  <Button mnemonicParsing="false" onMouseClicked="#handleLoadConfig" prefHeight="44.0" prefWidth="180.0" text="설정불러오기" textFill="#666666" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>
@@ -200,7 +200,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="180.0" text="설정 저장" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                  <Button mnemonicParsing="false" onMouseClicked="#handleSaveConfig" prefHeight="44.0" prefWidth="180.0" text="설정 저장" textFill="#666666" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                      <font>
                         <Font name="HCR Dotum Bold" size="18.0" />
                      </font>

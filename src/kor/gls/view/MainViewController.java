@@ -397,6 +397,7 @@ public class MainViewController {
 	
 	// 금일 세차기기 버튼 핸들링
 	public void handleTodayDeviceSales() {
+		today_device_data.clear();
 		String req = "get_today_device_sales";
 		String request = url + req;
 		String data_connect = http.post(request);
@@ -469,6 +470,7 @@ public class MainViewController {
 	
 	// 금일 충전기기 버튼 핸들링
 	public void handleTodayChargeSales() {
+		today_charge_data.clear();
 		String req = "get_today_charger_sales";
 		String request = url + req;
 		String data_connect = http.post(request);

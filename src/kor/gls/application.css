@@ -1,3 +1,47 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.main_background {
+	-fx-background-image : url("file:resources/main_background.png") 
+}
+
+.main_right_table {
+	-fx-font-size: 16pt;
+	-fx-font-weight: bold;
+	-fx-background-image:url("file:resources/main_sell_background.png");
+}
+
+.setting_table {
+	-fx-background-color:#d2d2d2;
+	-fx-padding:15px;	
+    -fx-font-family : "HCR Dotum";
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 2, 0.5, 1, 1);
+}
+
+.setting_table .thead {
+    -fx-size:30px;
+    -fx-background-color:transparent;
+    -fx-font-size:15px;
+    -fx-font-weight: bold;
+	-fx-border-color:#e2e2e2;
+	-fx-border-width : 0 3 0 0;
+	-fx-padding : 0 0;
+	-fx-alignment: center;
+}
+
+.charger_background {
+	-fx-background-image : url("file:resources/setting_background.png");
+	-fx-background-size: cover;
+}
+
+.wather_title {
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 2, 0.5, 1, 1);
+}
+
+.wather_body {
+	-fx-background-image : url("file:resources/wather_body.png");
+}
+
+
 .test {
 	-fx-font-family : "HCR Dotum"; -fx-font-size:18px; -fx-font-weight:bold;
 }

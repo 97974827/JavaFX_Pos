@@ -1,6 +1,7 @@
 package kor.gls.view;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -85,6 +86,8 @@ public class MasterSettingController {
 	CommonUtil common = new CommonUtil();
 	public String url = common.getUrl();
 	
+	Map<String, String> map_manager_list = new HashMap<String, String>(); // 공급업체 번호 , 이름 저장할 변수 
+	
 	@FXML
 	private void initialize() {
 		String req = "";
@@ -98,7 +101,7 @@ public class MasterSettingController {
 		ObservableList<String> observableList_self_list = FXCollections.observableArrayList();
 		ObservableList<String> observableList_operator_condition = FXCollections.observableArrayList("정액제", "배속제");
 		ObservableList<String> observableList_money_condition = FXCollections.observableArrayList("거치식", "터치식");
-		ObservableList<String> observableList_coating_print = FXCollections.observableArrayList("고압", "고압+코팅");
+		ObservableList<String> observableList_coating_print = FXCollections.observableArrayList("코팅", "고압+코팅");
 		ObservableList<String> observableList_wipping_enable = FXCollections.observableArrayList("사용", "사용안함");
 		
 		choicebox_card_enable_state.setItems(observableList_card_enable);
@@ -133,7 +136,8 @@ public class MasterSettingController {
 					
 					str_manager_name = job.get("manager_name").toString();
 					str_manager_no = job.get("manager_no").toString();
-					
+
+					map_manager_list.put(str_manager_name, str_manager_no);
 					observableList_manager_name.add(str_manager_name);
 				}
 				
@@ -330,18 +334,316 @@ public class MasterSettingController {
 	// 저장 후 종료
 	@FXML
 	private void handleOK() {
+		String change_manager_name = choicebox_manager_list.getValue().toString();
+		String change_manager_no = map_manager_list.get(change_manager_name);
+		String change_auth_data = textfield_auth_data.getText().toString();
+		String change_card_enable = choicebox_card_enable_state.getValue().toString();
+		String change_card_binary = choicebox_card_address.getValue().toString();
+		
+		if(change_card_enable.equals("사용")) {
+			change_card_enable = "1";
+		} else {
+			change_card_enable = "0";
+		}
+		
+		try {
+			FileOutputStream fos = new FileOutputStream(common.PROJECT_PATH + "/sample/auth.data");
+			
+			byte[] encoded = Base64.getEncoder().encode(change_auth_data.getBytes());
+			
+			fos.write(encoded);
+			fos.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map<String, String> params = new HashMap<String, String>();
+		
+		params.put("auth_code", change_auth_data);
+		params.put("manager_no", change_manager_no);
+		params.put("enable_card", change_card_enable);
+		params.put("card_binary", change_card_binary);
+		
+		
+		String req = "set_master_config";
+		String request = url + req;
+		String data_connect = http.post(request, params);
+		
+		if (data_connect.equals("error")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("경고");
+			alert.setHeaderText("연결 에러");
+			alert.setContentText("데이터 수집장치가 연결되어 있지 않습니다.");
+			alert.showAndWait();
+			return;
+		}
+		
+		try {
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(data_connect);
+			String result = jsonObject.get("result").toString();
+			
+			if(result.equals("1")) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+	        	alert.setTitle("확인");
+	        	alert.setHeaderText("성공");
+	        	alert.setContentText("저장되었습니다.");
+	        	alert.showAndWait();
+	        	
+	        	try {
+	        		FXMLLoader loader = new FXMLLoader();
+	        		loader.setLocation(Main.class.getResource("view/MainView.fxml"));
+	        		AnchorPane mainView = (AnchorPane) loader.load();
+	    			Main.rootLayout.setCenter(mainView);
+	    			MainViewController controller = loader.getController();
+	    			controller.setMainApp(this.mainApp);
+	    			
+	        	} catch (Exception e) {
+	        		e.printStackTrace();
+	        	}
+	        	
+			} else {
+				Alert alert = new Alert(AlertType.WARNING);
+	        	alert.setTitle("경고");
+	        	alert.setHeaderText("에러");
+	        	alert.setContentText("저장에 실패했습니다.");
+	        	alert.showAndWait();
+			}
+			
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.WARNING);
+        	alert.setTitle("경고");
+        	alert.setHeaderText("에러");
+        	alert.setContentText("값이 제대로 전달 되지 않았습니다. 다시 시도해주세요");
+        	alert.showAndWait();
+        	return;
+		}
 		
 	}
 	
 	// 설정불러오기
 	@FXML
-	private void handleConfigLoad() {
+	private void handleLoadConfig() {
+		String str_device_addr = choicebox_device_addr.getValue().toString();
 		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("device_addr", str_device_addr);
+		
+		String req = "get_hidden_config";
+		String request = url + req;
+		String data_connect = http.post(request, params);
+		
+		if (data_connect.equals("error")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("경고");
+			alert.setHeaderText("연결 에러");
+			alert.setContentText("데이터 수집장치가 연결되어 있지 않습니다.");
+			alert.showAndWait();
+			return;
+		}
+		
+		try {
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(data_connect);
+			JSONArray hidden_array = (JSONArray) jsonObject.get("result");
+			
+			for(int i=0; i<hidden_array.size(); i++) {	
+				JSONObject job = (JSONObject) hidden_array.get(i);
+				
+				String str_enable_type = job.get("enable_type").toString();			// 동작방식
+				String str_pay_type = job.get("pay_type").toString();				// 결제방식
+				String str_coating_type = job.get("coating_type").toString();       // 코팅출력
+				String str_wipping_enable = job.get("wipping_enable").toString();	// 위핑사용
+				String str_wipping_temp = job.get("wipping_temp").toString();		// 위핑온도 
+				
+				if(str_enable_type.equals("1")) {
+					str_enable_type = "배속제";
+				} else {
+					str_enable_type = "정액제";
+				}
+				
+				if(str_pay_type.equals("1")) {
+					str_pay_type = "거치식";
+				} else {
+					str_pay_type = "터치식";
+				}
+				
+				if(str_coating_type.equals("1")) {
+					str_coating_type = "고압+코팅";
+				} else {
+					str_coating_type = "코팅";
+				}
+				
+				if(str_wipping_enable.equals("1")) {
+					str_wipping_enable = "사용";
+				} else {
+					str_wipping_enable = "사용안함";
+				}
+				
+				choicebox_device_addr.setValue(str_device_addr);
+				choicebox_operater_condition.setValue(str_enable_type);
+				choicebox_money_condition.setValue(str_pay_type);
+				choicebox_coating_print.setValue(str_coating_type);
+				choicebox_wipping_enable.setValue(str_wipping_enable);
+				textfield_wipping_temp.setText(str_wipping_temp);
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+        	alert.setTitle("경고");
+        	alert.setHeaderText("에러");
+        	alert.setContentText("값이 제대로 전달 되지 않았습니다. 다시 시도해주세요");
+        	alert.showAndWait();
+        	return;
+		}
+		
+	
 	}
 	
 	// 설정 저장
 	@FXML
 	private void handleSaveConfig() {
+		String change_device_addr = choicebox_device_addr.getValue();
+		String change_enable_type = choicebox_operater_condition.getValue();
+		String change_pay_type = choicebox_money_condition.getValue();
+		String change_coating_type = choicebox_coating_print.getValue();
+		String change_wipping_enable = choicebox_wipping_enable.getValue();
+		String change_wipping_temp = textfield_wipping_temp.getText();
+		
+		if (change_device_addr.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("설정할 장비 번호를 선택해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		if (change_enable_type.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("동작 방식을 선택해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		if (change_pay_type.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("결제방식을 선택해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		if (change_coating_type.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("코팅출력을 선택해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		if (change_wipping_enable.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("위핑사용을 선택해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		if (change_wipping_temp.equals("") || Integer.parseInt(change_wipping_temp) <= 0) {
+			Alert alert = new Alert(AlertType.WARNING);
+         	alert.setTitle("경고");
+         	alert.setHeaderText("값 에러");
+         	alert.setContentText("위핑온도를 올바르게 입력해주세요");
+         	alert.showAndWait();
+         	return;
+		}
+		
+		
+		if(change_enable_type.equals("배속제")) {
+			change_enable_type = "1";
+		} else {
+			change_enable_type = "0";
+		}
+		
+		if(change_pay_type.equals("거치식")) {
+			change_pay_type = "1";
+		} else {
+			change_pay_type = "0";
+		}
+		
+		if(change_coating_type.equals("고압+코팅")) {
+			change_coating_type = "1";
+		} else {
+			change_coating_type = "0";
+		}
+		
+		if(change_wipping_enable.equals("사용")) {
+			change_wipping_enable = "1";
+		} else {
+			change_wipping_enable = "0";
+		}
+		
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("device_addr", change_device_addr);
+		params.put("enable_type", change_enable_type);
+		params.put("pay_type", change_pay_type);
+		params.put("coating_type", change_coating_type);
+		params.put("wipping_enable", change_wipping_enable);
+		params.put("wipping_temp", change_wipping_temp);
+				
+		String req = "set_hidden_config";
+		String request = url + req;
+		String data_connect = http.post(request, params);
+		
+		if (data_connect.equals("error")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("경고");
+			alert.setHeaderText("연결 에러");
+			alert.setContentText("데이터 수집장치가 연결되어 있지 않습니다.");
+			alert.showAndWait();
+			return;
+		}
+		
+		try {
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(data_connect);
+			String result = jsonObject.get("result").toString();
+			
+			//if(result.equals("1")) {				
+			Alert alert = new Alert(AlertType.INFORMATION);
+        	alert.setTitle("확인");
+        	alert.setHeaderText("성공");
+        	alert.setContentText("기기설정값을 변경했습니다.");
+        	alert.showAndWait();
+        	return;
+			
+//			} else {
+//				Alert alert = new Alert(AlertType.WARNING);
+//	        	alert.setTitle("경고");
+//	        	alert.setHeaderText("실패");
+//	        	alert.setContentText("저장에 실패했습니다.");
+//	        	alert.showAndWait();
+//	        	return;
+//			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+        	alert.setTitle("경고");
+        	alert.setHeaderText("에러");
+        	alert.setContentText("값이 제대로 전달 되지 않았습니다. 다시 시도해주세요");
+        	alert.showAndWait();
+        	return;
+		}
 		
 	}
 	
