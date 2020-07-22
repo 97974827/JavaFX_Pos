@@ -1,9 +1,18 @@
 package kor.gls.view;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,12 +24,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -288,7 +298,289 @@ public class WeatherController {
 	
 	// 10일간 날씨 예보 
 	private void ViewWeather() {
+		String req = "get_pos_config";
+		String request = url + req;
+		String data_connect = http.post(request);
+		String weather_area  = ""; // 날씨 가져올 지역 
 		
+		if(data_connect.equals("error")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("경고");
+			alert.setHeaderText("연결 에러");
+			alert.setContentText("데이터 수집장치가 연결되어 있지 않습니다.");
+			alert.showAndWait();
+			return;
+		} else {	
+			try {
+				JSONParser jsonParser = new JSONParser();
+				JSONObject jsonObject = (JSONObject) jsonParser.parse(data_connect);
+				JSONObject pos_config = (JSONObject) jsonObject.get("pos_config");
+				
+				String self_count = pos_config.get("self_count").toString();
+				String air_count = pos_config.get("air_count").toString();
+				String mate_count = pos_config.get("mate_count").toString();
+				String weather_url_zone = pos_config.get("weather_url").toString(); 
+				weather_area = pos_config.get("weather_area").toString(); 
+						
+				lbl_top_self.setText(self_count);
+				lbl_top_air.setText(air_count);
+				lbl_top_mate.setText(mate_count);
+				
+				List<Map<String, String>> weather_data = new ArrayList<Map<String, String>>(); 
+				weather_data = weather.getWeatherRssZoneParse(weather_url_zone); // 금일 날씨 반환 
+				
+				for(int i=0; i<weather_data.size(); i++) { // i = seq 순번
+					String weather_day = ""; // 날짜
+					String temper = ""; // 온도
+					String wfKor = "";  // 날씨
+					
+					String str_image = "";
+					Image image;			
+					weather_day = weather_data.get(i).get("day");
+					SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
+					Calendar cal = new GregorianCalendar();
+					
+					if(weather_day.equals("0") && i == 0) {
+						temper = weather_data.get(i).get("temp"); // 온도
+						wfKor = weather_data.get(i).get("wfKor"); // 날씨
+						
+						lbl_weather_str.setText(wfKor);
+						lbl_weather_temp.setText(temper + "ºC");
+						
+						str_image = weather.changeWeatherImage(wfKor);
+						image = new Image("File:resources/" + str_image);
+						image_top_weather.setImage(image);
+						
+					} else if(weather_day.equals("1")) { // 내일
+						if(weather_data.get(i).get("hour").equals("12")) {
+							temper = weather_data.get(i).get("temp"); // 온도
+							wfKor = weather_data.get(i).get("wfKor"); // 날씨
+							lbl_day_temp1.setText(wfKor + " " + temper + "ºC");
+							
+							str_image = weather.changeWeatherImage(wfKor);
+							image = new Image("File:resources/" + str_image);
+							image_weather1.setImage(image);
+							
+							cal.add(Calendar.DATE, 1);
+							lbl_date1.setText("내일 " + simple.format(cal.getTime()));
+						}
+						
+					} else if(weather_day.equals("2")) { // 모레
+						if(weather_data.get(i).get("hour").equals("12")) {
+							temper = weather_data.get(i).get("temp"); // 온도
+							wfKor = weather_data.get(i).get("wfKor"); // 날씨
+							lbl_day_temp2.setText(wfKor + " " + temper + "ºC");
+							
+							str_image = weather.changeWeatherImage(wfKor);
+							image = new Image("File:resources/" + str_image);
+							image_weather2.setImage(image);
+							
+							cal.add(Calendar.DATE, 2);
+							lbl_date2.setText("모레 " + simple.format(cal.getTime()));
+							
+						}
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("경고");
+				alert.setHeaderText("에러");
+				alert.setContentText("값이 제대로 전달 되지 않았습니다. 다시 시도해 주세요.");
+				alert.showAndWait();
+				return;
+			}
+		}
+			
+		// 모레 이후 날씨 반환 - 전국 중기예보 날씨 
+		String rssFeed = "https://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
+		
+		try {
+			SAXBuilder parser = new SAXBuilder();
+			parser.setIgnoringElementContentWhitespace(true);
+			
+			String url = String.format(rssFeed);
+			Document doc = parser.build(url);
+			Element root = doc.getRootElement();
+			
+			Element channel = root.getChild("channel");
+			Element item = channel.getChild("item");
+			Element description = item.getChild("description");
+			Element body = description.getChild("body");
+			
+			List<Element> list = body.getChildren("location");
+			String tmx = "";
+			String wf = "";
+			
+			Map<String, String> data = new LinkedHashMap<String, String>();
+			
+			for(int i=0; i<list.size(); i++) {
+				Element el = (Element) list.get(i);
+				
+				for(Element e : el.getChildren("city")) {
+					
+					// 지역 변경 
+					if (e.getText().equals(weather_area)) {
+						List <Element> e_list = el.getChildren("data");
+						
+						for(int j=0; j<e_list.size(); j++) {  // 가져올데이터 12개  -> 12:00 PM
+							Element element = (Element) e_list.get(j);
+							
+							for(Element ele : element.getChildren()) {
+								
+								if(j==1) { // 금일 3일이후 
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date3.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather3.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp3.setText(wf + " " + tmx);
+								}
+								
+								else if(j==3) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date4.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather4.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp4.setText(wf + " " + tmx);
+								}
+								
+								else if(j==5) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date5.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather5.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp5.setText(wf + " " + tmx);	
+								}
+								
+								else if(j==7) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date6.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather6.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp6.setText(wf + " " + tmx);	
+								}
+								
+								else if(j==9) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date7.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather7.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp7.setText(wf + " " + tmx);	
+								}
+								
+								else if(j==10) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date8.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather8.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp8.setText(wf + " " + tmx);	
+								}
+								
+								else if(j==11) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date9.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather9.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp9.setText(wf + " " + tmx);	
+								}
+								
+								else if(j==12) {
+									if (ele.getName().equals("tmEf")) { // 날짜
+										String[] date = ele.getText().split(" ");
+										lbl_date10.setText(date[0].toString());
+										
+									} else if(ele.getName().equals("wf")) { // 날씨
+										wf = ele.getText();
+										String change_image = weather.changeWeatherImage(wf);
+										Image image = new Image("File:resources/" + change_image);
+										image_weather10.setImage(image);
+										
+									} else if(ele.getName().equals("tmx")) { // 온도
+										tmx = ele.getText() + "ºC";
+									}
+									lbl_day_temp10.setText(wf + " " + tmx);	
+								}
+							}
+								
+						}
+						
+					} else {
+						continue;
+					}
+				}
+			}
+			
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	
 	}
 	
 	// 금일 세차기기 버튼 핸들링

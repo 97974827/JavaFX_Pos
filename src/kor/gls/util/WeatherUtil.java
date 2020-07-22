@@ -13,11 +13,11 @@ import org.jdom2.input.SAXBuilder;
 
 public class WeatherUtil {
 	
-	// RSS 주소 
+	// RSS 주소  - 금일 ~ 모레까지 가져올수 날씨 가져올수 있음 
 	private String rssFeed = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=%s";
 	
 	
-	// 해당 Zone 정보를 주어 하루치 날씨 정보 가져오기  
+	// 해당 Zone 정보를 주어 1일 날씨 정보 가져오기  
 	public List<Map<String, String>> getWeatherRssZoneParse(String str_zone) {
 		
 		List<Map<String, String>> result = new ArrayList<Map<String, String>>();
@@ -41,7 +41,7 @@ public class WeatherUtil {
 				Element el = (Element) list.get(i);
 				
 				String seq = el.getAttributeValue("seq"); 		// 순번
-				if(seq.equals("8")) break;  // 24시간 데이터만 추출 
+				//if(seq.equals("8")) break;  // 24시간 데이터만 추출 
 				
 				Map<String, String> data = new LinkedHashMap<String, String>();
 				
@@ -52,11 +52,14 @@ public class WeatherUtil {
 				data.put("wfKor", wf_kor);
 				data.put("temp", temp);
 				
+				// data요소의 자식요소들을 하나씩 꺼내서 저장 : (요소이름, 요소의 테스트노드)
 				for(Element dataChild : el.getChildren()) {
 					data.put(dataChild.getName(), dataChild.getTextTrim());
+	    		    //<hour>3</hour>
+                    //data.put("hour","3");
 				}
 				
-				//System.out.println(data);
+//				System.out.println(data);
 				result.add(data);
 			}
 

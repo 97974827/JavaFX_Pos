@@ -17,8 +17,8 @@ public class CommonUtil {
 		String url = "http://192.168.0.200:5000/";
 		
 		if (DEBUG) {
-//			url = "http://glstest.iptime.org:50000/";
-			url = "http://glsd3.iptime.org:50000/";
+			url = "http://glstest.iptime.org:50000/";
+//			url = "http://glsd3.iptime.org:50000/";
 		}
 	
 		return url;

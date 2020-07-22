@@ -20,7 +20,7 @@
    <children>
       <ImageView fx:id="image_top_weather" fitHeight="50.0" fitWidth="40.0" layoutX="1484.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="File:resources/cloud.png" />
+            <Image url="@../../../../resources/cloud.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="191.0" fitWidth="230.0" layoutX="206.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
@@ -113,152 +113,152 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lbl_date1" contentDisplay="CENTER" prefHeight="80.0" prefWidth="90.0" text="내일 02-21" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date1" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="145.0" text="내일 02-21" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp1" prefHeight="70.0" prefWidth="110.0" text="소나기 11ºC" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp1" alignment="CENTER" prefHeight="70.0" text="소나기 11ºC" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="image_weather1" fitHeight="65.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                  <ImageView fx:id="image_weather1" fitHeight="65.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/heavy_rainning.PNG" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather2" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <ImageView fx:id="image_weather2" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/cloud.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather3" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                  <ImageView fx:id="image_weather3" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/moment_rainning.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather4" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                  <ImageView fx:id="image_weather4" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/snow.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather5" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                  <ImageView fx:id="image_weather5" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/moment_rainning.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather6" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ImageView fx:id="image_weather6" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/fog.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather7" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ImageView fx:id="image_weather7" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/sunny.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather8" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ImageView fx:id="image_weather8" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/thunder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather9" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ImageView fx:id="image_weather9" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/smog.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="image_weather10" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <ImageView fx:id="image_weather10" fitHeight="60.0" fitWidth="76.0" layoutX="22.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <image>
                         <Image url="File:resources/rainning.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lbl_date2" contentDisplay="CENTER" prefHeight="80.0" prefWidth="90.0" text="모레 02-22" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date2" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="145.0" text="모레 02-22" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date3" contentDisplay="CENTER" prefHeight="80.0" prefWidth="50.0" text="02-23" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date3" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-23" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date6" contentDisplay="CENTER" prefHeight="72.0" prefWidth="50.0" text="02-26" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date6" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-26" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date7" contentDisplay="CENTER" prefHeight="72.0" prefWidth="50.0" text="02-27" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date7" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-27" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date8" contentDisplay="CENTER" prefHeight="72.0" prefWidth="50.0" text="02-28" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date8" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-28" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date9" contentDisplay="CENTER" prefHeight="72.0" prefWidth="50.0" text="03-01" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date9" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="03-01" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date4" contentDisplay="CENTER" prefHeight="80.0" prefWidth="50.0" text="02-24" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date4" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-24" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date5" contentDisplay="CENTER" prefHeight="80.0" prefWidth="50.0" text="02-25" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date5" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="02-25" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_date10" contentDisplay="CENTER" prefHeight="72.0" prefWidth="50.0" text="03-02" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="lbl_date10" alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="100.0" text="03-02" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp2" prefHeight="70.0" prefWidth="110.0" text="구름 13ºC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp2" alignment="CENTER" prefHeight="70.0" text="구름 13ºC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp10" prefHeight="87.0" prefWidth="110.0" text="비 7ºC" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp10" alignment="CENTER" prefHeight="87.0" text="비 7ºC" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp5" prefHeight="70.0" prefWidth="110.0" text="한때 비 11ºC" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp5" alignment="CENTER" prefHeight="70.0" text="한때 비 11ºC" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp9" prefHeight="87.0" prefWidth="110.0" text="연무 13ºC" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp9" alignment="CENTER" prefHeight="87.0" text="연무 13ºC" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp4" prefHeight="70.0" prefWidth="110.0" text="눈 5ºC" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp4" alignment="CENTER" prefHeight="70.0" text="눈 5ºC" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp3" prefHeight="70.0" prefWidth="110.0" text="소나기 14ºC" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp3" alignment="CENTER" prefHeight="70.0" text="소나기 14ºC" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp8" prefHeight="87.0" prefWidth="110.0" text="낙뢰 10ºC" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp8" alignment="CENTER" prefHeight="87.0" text="낙뢰 10ºC" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp7" prefHeight="87.0" prefWidth="110.0" text="맑음 12ºC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp7" alignment="CENTER" prefHeight="87.0" text="맑음 12ºC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_day_temp6" prefHeight="87.0" prefWidth="110.0" text="안개 11ºC" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Label fx:id="lbl_day_temp6" alignment="CENTER" prefHeight="87.0" text="안개 11ºC" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="HCR Dotum" size="18.0" />
                      </font>

@@ -284,17 +284,19 @@ public class SettingController {
 				weather_data = weather.getWeatherRssZoneParse(weather_url_zone);
 				
 				for(int i=0; i<weather_data.size(); i++) {
-					String weather_day = weather_data.get(i).get("day"); 
+					if(i==0) {
+						String weather_day = weather_data.get(i).get("day"); 
+						
+						String temper = weather_data.get(i).get("temp"); // 온도
+						String wfKor = weather_data.get(i).get("wfKor"); // 날씨
 					
-					String temper = weather_data.get(i).get("temp"); // 온도
-					String wfKor = weather_data.get(i).get("wfKor"); // 날씨
-				
-					lbl_weather_str.setText(wfKor);
-					lbl_weather_temp.setText(temper + "ºC");
-					
-					String str_image = weather.changeWeatherImage(wfKor);
-					Image image = new Image("File:resources/" + str_image);
-					image_top_weather.setImage(image);
+						lbl_weather_str.setText(wfKor);
+						lbl_weather_temp.setText(temper + "ºC");
+						
+						String str_image = weather.changeWeatherImage(wfKor);
+						Image image = new Image("File:resources/" + str_image);
+						image_top_weather.setImage(image);
+					}
 				}
 				
 				// 상단 세차장 정보 입력 

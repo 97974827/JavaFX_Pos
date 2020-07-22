@@ -376,17 +376,19 @@ public class MainViewController {
 		weather_data = weatherClass.getWeatherRssZoneParse(weather_url_zone);
 		
 		for(int i=0; i<weather_data.size(); i++) {
-			String weather_day = weather_data.get(i).get("day"); 
+			if(i==0) {
+				String weather_day = weather_data.get(i).get("day"); 
+				
+				String temper = weather_data.get(i).get("temp"); // ¿Âµµ
+				String wfKor = weather_data.get(i).get("wfKor"); // ³¯¾¾
 			
-			String temper = weather_data.get(i).get("temp"); // ¿Âµµ
-			String wfKor = weather_data.get(i).get("wfKor"); // ³¯¾¾
-		
-			lbl_weather_str.setText(wfKor);
-			lbl_weather_temp.setText(temper + "¨¬C");
-			
-			String str_image = weatherClass.changeWeatherImage(wfKor);
-			Image image = new Image("File:resources/" + str_image);
-			image_top_weather.setImage(image);
+				lbl_weather_str.setText(wfKor);
+				lbl_weather_temp.setText(temper + "¨¬C");
+				
+				String str_image = weatherClass.changeWeatherImage(wfKor);
+				Image image = new Image("File:resources/" + str_image);
+				image_top_weather.setImage(image);
+			}
 		}
 		
 		req = "start_thread";
