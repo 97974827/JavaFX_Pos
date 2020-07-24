@@ -10,9 +10,11 @@ public class USBCharge {
 	
 	
 	public USBCharge() {
-	
+		
 	}
 	
+	
+	// TODO : TEST
 	public static void main(String[] args) {
 		
 		try {

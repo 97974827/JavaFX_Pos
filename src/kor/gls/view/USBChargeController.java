@@ -8,9 +8,12 @@ import kor.gls.Main;
 public class USBChargeController {
 	
 	
+	
 	@FXML
 	private Main mainApp;
 
+	public boolean THREAD_CARD_START = false; // 카드등록 스레드 변수
+	
 	@FXML
 	private void initialize() {
 		
